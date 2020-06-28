@@ -51,6 +51,8 @@
 
     <div id="dispDay">
         <h2>Tageswerte des Monats - <?php echo substr($monthDays, 16,2).'.'.substr($monthDays, 12,4); ?></h2>
+        <h3>Summe: <?php echo getCsvSum(readCSV($data_dir."/".$monthDays))?></h3>
+
         <form id="formDay" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
             <select id="formDaySel" name="selMonthDays">
                 <?php 

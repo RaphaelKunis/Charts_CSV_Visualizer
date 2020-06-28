@@ -28,6 +28,20 @@ function readCSV($fname) {
 }
 
 /**
+ *  calculate the sum of the kwH valiues giben as array from readCSV
+ *  @param array $csv_as_array the array created by readCSV
+ */
+function getCsvSum($csv_as_array) {
+    $sumKwh = 0;
+    foreach ($csv_as_array as $value) {
+        if ($value[0] != 'Datum') { 
+            $sumKwh += $value[3];
+        }
+    }
+    return round($sumKwh,2);
+}
+
+/**
  *
  * create the data arrays from csv for monthly values as javascript code, i.e. var label.read = [v1,v2,v3,..];
  * available for files 
