@@ -28,17 +28,22 @@ function readCSV($fname) {
 }
 
 /**
- *  calculate the sum of the kwH valiues giben as array from readCSV
+ *  calculate the sum of the kwH values and temp average given as array from readCSV
  *  @param array $csv_as_array the array created by readCSV
+ *  @return String with values of sum(kwH) and average(temp)
  */
 function getCsvSum($csv_as_array) {
     $sumKwh = 0;
+    $avgTemp = 0;
+    $cnt = 0;
     foreach ($csv_as_array as $value) {
         if ($value[0] != 'Datum') { 
             $sumKwh += $value[3];
+            $avgTemp += $value[4]; 
+            $cnt +=1;
         }
     }
-    return round($sumKwh,2);
+    return number_format(round($sumKwh,2),2,",",".")."kWh - ".number_format(round($avgTemp/$cnt,2),2,",",".")." °C";
 }
 
 /**

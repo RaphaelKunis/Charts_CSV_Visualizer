@@ -128,16 +128,16 @@
         chart_s = document.getElementById('chartS0');
         drawChartS0(chart_s,labelS0,dataS0,tempS0);
 
-        // monthly values
+        // monthly values - now ajax
         <?php 
         // Create the javascript data types for labels and data
-        echo processData('read',readCSV( $data_dir."/zaehler_abgelesen.csv")); 
-        echo processData('measure',readCSV($data_dir."/zaehler_berechnet.csv")); 
+        //echo processData('read',readCSV( $data_dir."/zaehler_abgelesen.csv")); 
+        //echo processData('measure',readCSV($data_dir."/zaehler_berechnet.csv")); 
         /* result is 
            var label, data and temp */
         ?>
-        chart_m = document.getElementById('chartMonth');
-        drawChartMonthly(chart_m,labelMonRead,dataMonRead,dataMonMeas,tempMonMeas);
+        // chart_m = document.getElementById('chartMonth');
+        // drawChartMonthly(chart_m,labelMonRead,dataMonRead,dataMonMeas,tempMonMeas);
 
         // values compare two month
         <?php 
