@@ -11,24 +11,28 @@
     <script src="./javascripts/core.js"></script>                                                   <!-- my own js library -->
     <script> // Ajax
         var x = 'Teststring';
-
+        
         function setX(choice){  // set the variable x by function from ajax_mybtn
            x = choice;
            $('#dispMonth_ajax').load('./ajax_month.php', {var:x});  // test if this is also possible
         }
         
+        // function for Day Chart Reload based on selected month
+        function setSelMonthDays() { // set the variable by function
+            var monthDaySelectBox = document.getElementById("monthDaySelectBox");
+            var selMonthDays = monthDaySelectBox.options[monthDaySelectBox.selectedIndex].value;
+            $('#dispDay_ajax').load('./ajax_day.php', {selMonthDays:selMonthDays});
+        }
+
         $(document).ready(function() {
             // init charts
             $('#dispMonth_ajax').load('./ajax_month.php', {var:x});
+            $('#dispDay_ajax').load('./ajax_day.php');      // initial call without post of selMonthDays
             
             // functions for chart reload
             $('#ajax_link_month').click(function(e){
                 e.preventDefault();
                 $('#dispMonth_ajax').load('./ajax_month.php', {var:x});
-            }); //  $('#ajax_link_month').click
-            $('#ajax_link_days').click(function(e){
-                e.preventDefault();
-                $('#dispDay').load('./ajax_day.php', {var:x});
             }); //  $('#ajax_link_month').click
         }); // $(document...
     </script>
@@ -45,10 +49,8 @@
 
     <?php // -- now start with html displaying ?> 
     <h1>CSV Visualisierung mit Chart.js</h1>
-    <button onclick="toogleVisibility(document.getElementById('dispMonth'))">Toggle Monatswerte</button>
-    <button onclick="toogleVisibility(document.getElementById('dispDay'))">Toggle Tageswerte</button>
-    <button onclick="toogleVisibility(document.getElementById('dispCompare'))">Toggle Monatsvergleich</button>
 
+    <!-- jetzt als Ajax umgesetzt, siehe unten
     <div id="dispDay">
         <h2>Tageswerte des Monats - <?php echo substr($monthDays, 16,2).'.'.substr($monthDays, 12,4); ?></h2>
         <h3>Summe: <?php echo getCsvSum(readCSV($data_dir."/".$monthDays))?></h3>
@@ -70,15 +72,15 @@
         </form>            
         <canvas id="chartS0" width="400" height="100"></canvas>
     </div>
+    -->
 
-<!--     <div id="dispMonth">
-        <h2>Monatswerte</h2>
-        <canvas id="chartMonth" width="400" height="100"></canvas>
-    </div> -->
+    <div id="dispDay_ajax">
+    <!-- nur Platzhalter, wird durch ajax_day.php befüllt -->
+    </div>
 
     <a id='ajax_link_month' href='#'>Ajax update month</a><br/>
-    <button class="ajax_mybtn" onClick="setX('Test 111')">Choice Test1</button>
-    <button class="ajax_mybtn" onClick="setX('Test 222222')">Choice Test2</button>
+<!--     <button class="ajax_mybtn" onClick="setX('Test 111')">Choice Test1</button>
+    <button class="ajax_mybtn" onClick="setX('Test 222222')">Choice Test2</button>  -->
     <div id="dispMonth_ajax">
         <h2>Monatswerte Ajax</h2>
         <canvas id="chartMonthAjax" width="400" height="100"></canvas>
@@ -120,13 +122,13 @@
         // values measured by S0
         <?php 
         // Create the javascript data types for labels and data
-        echo processDataS0(readCSV($data_dir."/".$monthDays)); 
+        //echo processDataS0(readCSV($data_dir."/".$monthDays)); 
         // echo processDataS0(readCSV($data_dir."zaehler_kwh_202003.csv")); 
         /* result is 
            var labelS0, dataS0 and tempS0 */
         ?>
-        chart_s = document.getElementById('chartS0');
-        drawChartS0(chart_s,labelS0,dataS0,tempS0);
+        //chart_s = document.getElementById('chartS0');
+        //drawChartS0(chart_s,labelS0,dataS0,tempS0);
 
         // monthly values - now ajax
         <?php 

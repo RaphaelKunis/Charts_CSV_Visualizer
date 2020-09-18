@@ -2,6 +2,10 @@
 require_once("./core.php");
 $data_dir = './data'; 
 
+// Paramtest
+//foreach ($_POST as $param_name => $param_val) {
+//    echo "Param: $param_name; Value: $param_val<br />\n }";
+
 print('<h2>Monatswerte Ajax - T</h2>
 <canvas id="chartMonthAjax" width="400" height="100"></canvas>
 <script>');
@@ -15,8 +19,4 @@ print ("
 chart_m = document.getElementById('chartMonthAjax');
 drawChartMonthly(chart_m,labelMonRead,dataMonRead,dataMonMeas,tempMonMeas);
 </script>");
-
-foreach ($_POST as $param_name => $param_val) {
-    echo "Param: $param_name; Value: $param_val<br />\n";
-}
 ?>
