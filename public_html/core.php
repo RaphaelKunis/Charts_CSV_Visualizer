@@ -1,4 +1,5 @@
 <?php
+
 /**
  *  read the contents of a given csv file and store it into an array
  *  @param string $fname the filename of the csv file

@@ -1,4 +1,8 @@
-<?php require_once("./core.php") ?>
+<?php 
+// php standard actions to init 
+require_once("./core.php");
+require_once("./config.php");   // i.e. $data_dir
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +43,7 @@
     <title>CSV Visualisierung mit Chart.js</title>
 </head>
 <body>
-    <?php  // php standard actions to init 
-        $data_dir = './data'; 
+    <?php
         // try to get the two month via POST if already set or use standard values
         $monthDays = isset($_POST['selMonthDays']) ? $_POST["selMonthDays"] : getNewestS0File();
         $month1    = isset($_POST['selMonth1']) ? $_POST["selMonth1"] : str_replace(strval(date("Y")),strval(date("Y")-1),getNewestS0File()); // ab jetzt Monat getNewestS0Filevom Vorjahr  "zaehler_kwh_202001.csv"; 

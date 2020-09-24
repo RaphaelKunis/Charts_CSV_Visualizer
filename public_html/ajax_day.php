@@ -1,14 +1,17 @@
 <?php 
+/** Create the select, canvas, data and script elements for displaying daily values of the selected month */
+
 require_once("./core.php");
-$data_dir = './data'; 
+require_once("./config.php");
+// get variable or set to standard value
 $monthDays = isset($_POST['selMonthDays']) ? $_POST["selMonthDays"] : getNewestS0File();
 
-print('<h2>Tageswerte Ajax des Monats - '.substr($monthDays, 16,2).'.'.substr($monthDays, 12,4).'</h2>
+print('<h2>Tageswerte des Monats - '.substr($monthDays, 16,2).'.'.substr($monthDays, 12,4).'</h2>
 <h3>Summe: '.getCsvSum(readCSV($data_dir."/".$monthDays)).'</h3>
 ');
 
 // now print the select list an let the select var be selMonthDays
-print '<label>Monatsauswahl: <select id="monthDaySelectBox" onchange="setSelMonthDays();">';            // setSelMonthDays is defined in index2.php
+print '<label>Monatsauswahl: <select id="monthDaySelectBox" onchange="setSelMonthDays();">';            // setSelMonthDays is defined in index.php
 $files = scandir($data_dir);
 foreach($files as $file) {
     if (strpos($file, 'zaehler_kwh_') !== false) {
