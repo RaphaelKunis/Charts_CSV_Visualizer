@@ -1,5 +1,5 @@
 <?php
 /** Definition of global variables to import */
-
-$data_dir = './data'; 
+const DEBUG = FALSE;             // Konstante für DEBUG-Modus
+$data_dir = './data';           // Datenverzeichnis
 ?>

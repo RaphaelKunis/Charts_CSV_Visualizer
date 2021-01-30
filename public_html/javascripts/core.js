@@ -117,6 +117,98 @@ function drawChartS0(chart_ctx, arr_label, arr_data, temp_data) {// draw the cha
 }
 
 /**
+ * Draw the S0Counter chart with temperature as boxplot
+ * @param {*} chart_ctx Chart Canvas to get by document.getElementById('myChart');
+ * @param {*} arr_label array with labels
+ * @param {*} arr_data  array with data for kWh values
+ * @param {*} temp_data array with data for temperature values (array with values for each day)
+ */
+function drawChartS0Bp(chart_ctx, arr_label, arr_data, temp_data) {// draw the chart
+    myChartS0Bp = new Chart(chart_ctx, {
+        type: 'bar',
+        title: 'Stromverbrauch Heizung',
+        data: {
+            labels: arr_label,
+            datasets: [{
+                label:'Stromverbrauch',
+                yAxisID: 'kwh',
+                data: arr_data,
+                backgroundColor: 'rgba(255, 159, 64, 0.5)',  // orange
+                borderWidth: 1,
+                order: 1
+                }, {
+                label:'Temperatur',
+                yAxisID: 'temp',
+                data: temp_data,
+                type: 'boxplot',
+                borderColor: 'rgba(255, 99, 132, 1)',       // red
+                //backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+                outlierColor: '#999999',
+                borderWidth: 1,
+                order: 2   
+                }
+            ],
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    id: 'kwh',
+                    label: 'kWh',
+                    type: 'linear',
+                    position: 'left',
+                    ticks: { min: 0},
+                    beginAtZero: true
+                  }, {
+                    id: 'temp',
+                    label: '°C',
+                    type: 'linear',
+                    position: 'right',
+                    ticks: { max: 30, min: -5},
+                    beginAtZero: true,
+                    responsive: true,
+                  }]
+            }
+        }
+    });
+    return;
+}
+
+function drawChartS0BpTest(chart_ctx, arr_label, arr_data, temp_data) {// draw the chart
+    myChartS0Bp = new Chart(chart_ctx, {
+      type: 'boxplot',
+      labels: arr_label,
+      datasets: [{
+          label:'Temperatur',
+          data: temp_data,
+          borderColor: 'rgba(255, 99, 132, 1)',       // red
+          //backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+          outlierColor: '#999999',
+          borderWidth: 1,
+          order: 2   
+      }],
+      options: {
+        responsive: true,
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Chart.js Box Plot Chart',
+        },
+        scales: {
+          xAxes: [
+            {
+              // Specific to Bar Controller
+              categoryPercentage: 0.9,
+              barPercentage: 0.8,
+            },
+          ],
+        },
+      },
+    });
+}
+
+/**
  * Draw the month compare chart
  * @param {*} chart_ctx Chart Canvas to get by document.getElementById('myChart');
  * @param {*} arr_label array with labels

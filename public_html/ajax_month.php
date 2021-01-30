@@ -12,8 +12,8 @@ print('<h2>Monatswerte</h2>
 <script>');
 // monthly values
 // Create the javascript data types for labels and data
-echo processData('read',readCSV( $data_dir."/zaehler_abgelesen.csv")); 
-echo processData('measure',readCSV($data_dir."/zaehler_berechnet.csv")); 
+echo processData(readCSV($data_dir."/zaehler_abgelesen.csv"), 'read'); 
+echo processData(readCSV($data_dir."/zaehler_berechnet.csv", 'measure')); 
 /* result is 
    var label, data and temp */
 print ("

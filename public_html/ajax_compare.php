@@ -36,6 +36,11 @@ foreach($files as $file) {
 print '</select>
 </label>'; 
 
+print '
+<h3>Summe '.substr($month1, 16,2).'/'.substr($month1, 12,4).': '.getCsvSum(readCSV($data_dir."/".$month1)).' - Tagesdurchschnitt '.getCsvAvg(readCSV($data_dir."/".$month1)).' </h3>
+<h3>Summe '.substr($month2, 16,2).'/'.substr($month2, 12,4).': '.getCsvSum(readCSV($data_dir."/".$month2)).' - Tagesdurchschnitt '.getCsvAvg(readCSV($data_dir."/".$month2)).' </h3>
+';
+
 // Create the javascript data types for labels and data
 print ('<canvas id="chartComp" width="400" height="100"></canvas>
 <script>');
