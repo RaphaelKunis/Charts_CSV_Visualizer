@@ -9,6 +9,7 @@ require_once("./config.php");   // i.e. $data_dir
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="core.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>      <!-- needed for charts -->
     <script src="https://unpkg.com/@sgratzl/chartjs-chart-boxplot"></script>                        <!-- needed for boxplot charts - copy in folder javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>        <!-- needed for ajax -->
@@ -20,6 +21,15 @@ require_once("./config.php");   // i.e. $data_dir
         var viewCompDay;     // controls dispCompDay_ajax
         var viewComp;        // controls dispComp_ajax
 
+        // change button class depending on staus_on
+        function changeButtonColor(btn_id, status_on) {
+            if (status_on) {
+                document.getElementById(btn_id).setAttribute("class", "btn-active");
+            } else {
+                document.getElementById(btn_id).setAttribute("class", "btn-inactive");
+            }
+        }
+
         // toggle visibility of given div id
         function myToggleVisibility(id) {
             switch (id) {
@@ -27,21 +37,25 @@ require_once("./config.php");   // i.e. $data_dir
                     viewDay = !viewDay;
                     localStorage.setItem('viewDay',viewDay);
                     setSelMonthDays();
+                    changeButtonColor('btn-day', viewDay);                    
                     break;
                 case "dispDaySingle_ajax":
                     viewDaySingle = !viewDaySingle;
                     localStorage.setItem('viewDaySingle',viewDaySingle);
                     setSelDaySingle();
+                    changeButtonColor('btn-daySingle', viewDaySingle);
                     break;
                 case "dispCompDay_ajax":
                     viewCompDay = !viewCompDay;
                     localStorage.setItem('viewCompDay',viewCompDay);
                     setSelDayComp();
+                    changeButtonColor('btn-compDay', viewCompDay);              
                     break;
                 case "dispComp_ajax":
                     viewComp = !viewComp;
                     localStorage.setItem('viewComp',viewComp);
                     setSelMonthComp();
+                    changeButtonColor('btn-comp', viewComp);                       
                     break;
                 default:
                     break;
@@ -116,6 +130,12 @@ require_once("./config.php");   // i.e. $data_dir
             viewCompDay = localStorage.getItem('viewCompDay') ? localStorage.getItem('viewCompDay') === "true" ? true : false : false;
             viewComp = localStorage.getItem('viewComp') ? localStorage.getItem('viewComp') === "true" ? true : false : false;
 
+            // init buttons
+            viewDay ?  $('#btn-day').toggleClass("btn-active") : $('#btn-day').toggleClass("btn-inactive");
+            viewDaySingle ? $('#btn-daySingle').toggleClass("btn-active") : $('#btn-daySingle').toggleClass("btn-inactive");
+            viewCompDay ? $('#btn-compDay').toggleClass("btn-active") : $('#btn-compDay').toggleClass("btn-inactive");
+            viewComp ? $('#btn-comp').toggleClass("btn-active") : $('#btn-comp').toggleClass("btn-inactive");
+
             // init charts
             setSelMonthDays();
             setSelDaySingle();
@@ -128,10 +148,10 @@ require_once("./config.php");   // i.e. $data_dir
 <body>
     <h1>CSV Visualisierung mit Chart.js</h1>
 
-    <button onclick="myToggleVisibility('dispDay_ajax')">Toggle Tageswerte</button>
-    <button onclick="myToggleVisibility('dispDaySingle_ajax')">Toggle Einzelwerte Tag</button>
-    <button onclick="myToggleVisibility('dispCompDay_ajax')">Toggle Tagesvergleich</button>
-    <button onclick="myToggleVisibility('dispComp_ajax')">Toggle Monatsvergleich</button>
+    <button id="btn-day" onclick="myToggleVisibility('dispDay_ajax')">Toggle Tageswerte</button>
+    <button id="btn-daySingle" onclick="myToggleVisibility('dispDaySingle_ajax')">Toggle Einzelwerte Tag</button>
+    <button id="btn-compDay" onclick="myToggleVisibility('dispCompDay_ajax')">Toggle Tagesvergleich</button>
+    <button id="btn-comp" onclick="myToggleVisibility('dispComp_ajax')">Toggle Monatsvergleich</button>
 
 
     <div id="dispDay_ajax"></div>        <!-- nur Platzhalter, wird durch ajax_day.php befüllt -->
