@@ -5,10 +5,10 @@ require_once("./config.php");
 $thispage = "";
 
 // read post variables or take the current day for compare
-$selDay1    = isset($_POST['selDay1']) ? $_POST["selDay1"] : date("Y-m-d");
+$selDay1    = isset($_POST['selDay1']) ? $_POST["selDay1"] : date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")-1, date("Y"))); // yesterday  
 $filename1  = "zaehler_kwh_".substr(str_replace("-","",$selDay1),0,-2).".csv";
 $dayInFile1 = date("Y-n-j",strtotime($selDay1));
-$selDay2    = isset($_POST['selDay2']) ? $_POST["selDay2"] : $selDay1;
+$selDay2    = isset($_POST['selDay2']) ? $_POST["selDay2"] : date("Y-m-d");          // today
 $filename2  = "zaehler_kwh_".substr(str_replace("-","",$selDay2),0,-2).".csv";
 $dayInFile2 = date("Y-n-j",strtotime($selDay2));
 
