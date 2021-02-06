@@ -6,14 +6,16 @@ import os, datetime
 
 cwd = os.getcwd()
 cdate = datetime.date.today()
+fname_sample = "_zaehler_kwh_sample.csv"
+fname_data = "zaehler_kwh_" + cdate.strftime("%Y%m") + ".csv"
 
+# check path
 if (cwd.endswith('scripts')):
     path = os.path.join(cwd,"..","public_html","data")
 else:
     path = os.path.join(cwd,"public_html","data")
-fname_sample = "zaehler_kwh_sample.csv"
-fname_data = "zaehler_kwh_" + cdate.strftime("%Y%m") + ".csv"
 
+# do the file work
 f = open(os.path.join(path,fname_sample), "r")
 f_neu = open(os.path.join(path,fname_data), "w")
 for line in f:
