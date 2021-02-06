@@ -10,6 +10,9 @@ Die CSV-Dateien werden bei mir auf einem Raspberry Pi Mini eingesammelt
   * Ausführen von scripts/create_sample_data.py
   * Danach Upload des public_html-Verzeichnisses in Verzeichnis (z.B. charts_visualizer) auf Webserver
 
+## Benennung der CSV-Dateien
+ zaehler_kwh_<YYYY><MM>.csv
+
 ## Aussehen der CSV-Dateien
 Datum; Uhrzeit; Zaehler; kWh; Temperatur
 2020-1-1;0:0:57;0;0.000000;4.312000
