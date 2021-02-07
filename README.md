@@ -11,10 +11,11 @@ Die CSV-Dateien werden bei mir auf einem Raspberry Pi Mini eingesammelt
   * Danach Upload des public_html-Verzeichnisses in Verzeichnis (z.B. charts_visualizer) auf Webserver
 
 ## Benennung der CSV-Dateien
- zaehler_kwh_<YYYY><MM>.csv
+ zaehler_kwh_&lt;YYYY&gt;&lt;MM&gt;.csv, z.B. zaehler_kwh_202101.csv
 
 ## Aussehen der CSV-Dateien
 Datum; Uhrzeit; Zaehler; kWh; Temperatur
+
 2020-1-1;0:0:57;0;0.000000;4.312000
 
   * Datum in der Form YYYY-MM-DD oder YYYY-M-D
