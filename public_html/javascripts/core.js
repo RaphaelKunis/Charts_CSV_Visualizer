@@ -1,3 +1,9 @@
+/** Core functions for chart visualization with chat.js
+ * Changelog
+ * 10.02.2021, rk1
+ *  - removed fixed y-scale fro temp
+ * /
+
 /**
  * Draw the monthly chart
  * @param {*} chart_ctx Chart Canvas to get by document.getElementById('myChart');
@@ -32,7 +38,7 @@ function drawChartMonthly(chart_ctx, arr_label,arr_data_read,arr_data_meas, temp
                 data: temp_data_meas,
                 type: 'line',
                 borderColor: 'rgba(255, 99, 132, 1)',       // red
-                backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+                backgroundColor: 'rgba(255, 255, 255, 0)',  // white - transparent
                 borderWidth: 1,
                 order: 2   
                 }
@@ -52,7 +58,7 @@ function drawChartMonthly(chart_ctx, arr_label,arr_data_read,arr_data_meas, temp
                     label: '°C',
                     type: 'linear',
                     position: 'right',
-                    ticks: { max: 30, min: -5},
+                    // ticks: { max: 30, min: -5},
                     beginAtZero: true
                   }]
             }
@@ -87,7 +93,7 @@ function drawChartS0(chart_ctx, arr_label, arr_data, temp_data) {// draw the cha
                 data: temp_data,
                 type: 'line',
                 borderColor: 'rgba(255, 99, 132, 1)',       // red
-                backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+                backgroundColor: 'rgba(255, 255, 255, 0)',  // white - transparent
                 borderWidth: 1,
                 order: 2   
                 }
@@ -107,7 +113,7 @@ function drawChartS0(chart_ctx, arr_label, arr_data, temp_data) {// draw the cha
                     label: '°C',
                     type: 'linear',
                     position: 'right',
-                    ticks: { max: 30, min: -5},
+                    // ticks: { max: 30, min: -5},
                     beginAtZero: true
                   }]
             }
@@ -142,7 +148,7 @@ function drawChartS0Bp(chart_ctx, arr_label, arr_data, temp_data) {// draw the c
                 data: temp_data,
                 type: 'boxplot',
                 borderColor: 'rgba(255, 99, 132, 1)',       // red
-                //backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+                //backgroundColor: 'rgba(255, 255, 255, 0)',  // white - transparent
                 outlierColor: '#999999',
                 borderWidth: 1,
                 order: 2   
@@ -163,7 +169,7 @@ function drawChartS0Bp(chart_ctx, arr_label, arr_data, temp_data) {// draw the c
                     label: '°C',
                     type: 'linear',
                     position: 'right',
-                    ticks: { max: 30, min: -5},
+                    // ticks: { max: 30, min: -5},
                     beginAtZero: true,
                     responsive: true,
                   }]
@@ -181,7 +187,7 @@ function drawChartS0BpTest(chart_ctx, arr_label, arr_data, temp_data) {// draw t
           label:'Temperatur',
           data: temp_data,
           borderColor: 'rgba(255, 99, 132, 1)',       // red
-          //backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+          //backgroundColor: 'rgba(255, 255, 255, 0)',  // white - transparent
           outlierColor: '#999999',
           borderWidth: 1,
           order: 2   
@@ -249,7 +255,7 @@ function drawChartCompare(chart_ctx, arr_label,label_m1,arr_data_m1,temp_data_m1
                 data: temp_data_m1,
                 type: 'line',
                 borderColor: 'rgba(255, 99, 132, 0.9)',       // red
-                backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+                backgroundColor: 'rgba(255, 255, 255, 0)',  // white - transparent
                 borderWidth: 1,
                 order: 2   
                 }, {
@@ -258,13 +264,22 @@ function drawChartCompare(chart_ctx, arr_label,label_m1,arr_data_m1,temp_data_m1
                 data: temp_data_m2,
                 type: 'line',
                 borderColor: 'rgba(153, 102, 255, 0.9)',    // purple
-                backgroundColor: 'rgba(255, 255, 255, 0)',  // weiß - transparent
+                backgroundColor: 'rgba(255, 255, 255, 0)',  // white - transparent
                 borderWidth: 1,
                 order: 2   
                 }
             ],
         },
         options: {
+            responsive: true,
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'index',
+                intersect: false,
+            },
             scales: {
                 yAxes: [{
                     id: 'kw',
@@ -278,7 +293,7 @@ function drawChartCompare(chart_ctx, arr_label,label_m1,arr_data_m1,temp_data_m1
                     label: '°C',
                     type: 'linear',
                     position: 'right',
-                    ticks: { max: 30, min: -5},
+                    // ticks: { max: 30, min: -5},
                     beginAtZero: true
                   }]
             }

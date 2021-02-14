@@ -10,7 +10,7 @@ require_once("./config.php");   // i.e. $data_dir
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="core.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>      <!-- needed for charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>      <!-- needed for charts -->
     <script src="https://unpkg.com/@sgratzl/chartjs-chart-boxplot"></script>                        <!-- needed for boxplot charts - copy in folder javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>        <!-- needed for ajax -->
     <script src="./javascripts/core.js"></script>                                                   <!-- my own js library -->
